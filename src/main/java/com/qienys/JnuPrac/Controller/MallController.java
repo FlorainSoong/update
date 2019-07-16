@@ -1,5 +1,6 @@
 package com.qienys.JnuPrac.Controller;
 
+import ch.qos.logback.core.util.COWArrayList;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.qienys.JnuPrac.pojo.Product;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import static java.lang.System.out;
 
 @Controller
@@ -30,16 +31,9 @@ public class MallController {
 
         out.println(jsonProduct.toJSONString());
         JSONObject result = new JSONObject();
-        Product product = JSON.parseObject(jsonProduct.toJSONString(),Product.class);
-        Product productInfo = productServiceImpl.findByName(product.getName());
-        out.println(productInfo.getName());
-        result.put("name", product.getName());
-        result.put("description",product.getDescription());
-        result.put("price", product.getPrice());
-        result.put("brand", product.getBrand());
-        result.put("sold",product.getSold());
-        result.put("stock", product.getStock());
-        result.put("product type", product.getProductType());
+        List<Product> products = productServiceImpl.findAll();
+        result.put("method", "json");
+        result.put("data", products);
 
         return result.toJSONString();
 
