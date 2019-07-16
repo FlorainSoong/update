@@ -1,20 +1,10 @@
-package com.qienys.JnuPrac.service.impl;
+package com.qienys.JnuPrac.service;
 
-import com.qienys.JnuPrac.dao.ProductRepository;
 import com.qienys.JnuPrac.pojo.Product;
-import com.qienys.JnuPrac.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.sun.tools.javac.util.List;
 
-@Service
-public class ProductServiceImpl implements ProductService {
-    @Autowired
-    private ProductRepository productRepository;
-
-    public Product findByProductName(String name){
-        Product product = productRepository.findByProductName(name);
-        return product;
-    }
+public interface ProductService {
+    Product findByName(String name);
+    List<Product> findAll ();
 
 }
-
