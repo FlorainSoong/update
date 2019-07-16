@@ -31,10 +31,10 @@ public class MallController {
         out.println(jsonProduct.toJSONString());
         JSONObject result = new JSONObject();
         Product product = JSON.parseObject(jsonProduct.toJSONString(),Product.class);
-        Product productInfo = productServiceImpl.findByProductName(product.getName());
+        Product productInfo = productServiceImpl.findByName(product.getName());
         out.println(productInfo.getName());
         result.put("name", product.getName());
-        result.put("descryption",product.getDescription());
+        result.put("description",product.getDescription());
         result.put("price", product.getPrice());
         result.put("brand", product.getBrand());
         result.put("sold",product.getSold());
